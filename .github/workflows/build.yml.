@@ -1,168 +1,19 @@
-\documentclass[11pt]{article}
+name: Build PDF
 
-\usepackage{geometry}
-\usepackage{array}
+on: [push]
 
-\geometry{margin=0.8in}
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-\begin{document}
+    steps:
+      - uses: actions/checkout@v3
 
-\begin{center}
-\textbf{\Large DEEP VEIN THROMBOSIS (DVT)} \\
-\textit{Bailey \& Love + SRB + Vishram Singh Integrated Notes}
-\end{center}
+      - uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
 
-\hrule
-\vspace{0.3cm}
-
-\section*{PAGE 1: CONCEPTUAL UNDERSTANDING}
-
-\subsection*{What exactly is DVT?}
-\begin{itemize}
-\item Not just a clot → \textbf{failure of venous return system}
-\item Occurs in \textbf{deep veins of lower limb}
-\item Initiates in \textbf{valve cusps due to stasis}
-\end{itemize}
-
-\subsection*{Why it occurs (Physiology → Pathology)}
-\begin{itemize}
-\item Normal: Calf muscle pump maintains flow
-\item Immobilization → venous stasis
-\item Stasis → fibrin deposition → thrombus formation
-\end{itemize}
-
-\subsection*{Virchow’s Triad (Cause → Effect)}
-\begin{itemize}
-\item Venous stasis → slow flow
-\item Endothelial injury → exposure of subendothelium
-\item Hypercoagulability → increased clotting tendency
-\end{itemize}
-
-\textbf{Flow:} Stasis + Injury + Hypercoagulability → Thrombus
-
-\subsection*{Anatomy Relevance}
-\begin{itemize}
-\item Soleus muscle = \textbf{venous reservoir (Peripheral heart)}
-\item Site of clot initiation = \textbf{valve cusps}
-\end{itemize}
-
-\subsection*{Named Perforators}
-\begin{itemize}
-\item Dodd → thigh
-\item Boyd → below knee
-\item Cockett → lower leg (ulcer zone)
-\end{itemize}
-
-\newpage
-
-\section*{PAGE 2: CLASSIFICATION + CLINICAL PRESENTATION}
-
-\subsection*{Classification}
-\begin{itemize}
-\item Proximal DVT → femoral / iliac veins
-\item Distal DVT → calf veins
-\end{itemize}
-
-\subsection*{Risk Factors (Grouped)}
-\begin{itemize}
-\item Patient: Age >40, obesity, pregnancy
-\item Surgical: Orthopedic, pelvic surgery
-\item Medical: Malignancy, nephrotic syndrome
-\end{itemize}
-
-\subsection*{Clinical Features}
-\begin{itemize}
-\item Calf pain (deep, dull)
-\item Swelling (pitting edema)
-\item Warmth and tenderness
-\end{itemize}
-
-\subsection*{DVT vs Superficial Thrombophlebitis}
-
-\begin{center}
-\begin{tabular}{|l|l|l|}
-\hline
-Feature & DVT & SVT \\
-\hline
-Pain & Deep & Localized \\
-Swelling & Diffuse & Minimal \\
-Palpation & Muscle tenderness & Cord-like vein \\
-PE Risk & High & Low \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection*{Differentials}
-\begin{itemize}
-\item Cellulitis → redness + fever
-\item Lymphedema → non-pitting swelling
-\end{itemize}
-
-\newpage
-
-\section*{PAGE 3: INVESTIGATIONS}
-
-\subsection*{Wells Score (Clinical Logic)}
-\begin{itemize}
-\item Points for stasis + swelling factors
-\item Negative if alternate diagnosis likely
-\end{itemize}
-
-\subsection*{Interpretation}
-\begin{itemize}
-\item Low probability → D-dimer
-\item High probability → Ultrasound directly
-\end{itemize}
-
-\subsection*{Investigations}
-\begin{itemize}
-\item D-dimer → high sensitivity (rule OUT)
-\item Duplex ultrasound → \textbf{investigation of choice}
-\item Key finding → \textbf{non-compressible vein}
-\end{itemize}
-
-\newpage
-
-\section*{PAGE 4: MANAGEMENT}
-
-\subsection*{Treatment Flow}
-\begin{itemize}
-\item Start LMWH (Enoxaparin)
-\item Shift → DOAC / Warfarin
-\item INR target (warfarin) → 2–3
-\end{itemize}
-
-\subsection*{Why anticoagulation?}
-\begin{itemize}
-\item Prevent clot propagation
-\item Prevent pulmonary embolism
-\end{itemize}
-
-\newpage
-
-\section*{PAGE 5: COMPLICATIONS}
-
-\begin{itemize}
-\item Pulmonary embolism (PE)
-\item Post-thrombotic syndrome
-\item Phlegmasia cerulea dolens (emergency)
-\end{itemize}
-
-\subsection*{When to suspect PE}
-\begin{itemize}
-\item Sudden dyspnea
-\item Chest pain
-\item Hemoptysis
-\end{itemize}
-
-\subsection*{Mnemonic}
-\textbf{WHIPS}
-\begin{itemize}
-\item Wheeze
-\item Hemoptysis
-\item Inspiratory pain
-\item Palpitations
-\item Shortness of breath
-\end{itemize}
-
-\end{document}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: pdf
+          path: main.pdf
